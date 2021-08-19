@@ -5,8 +5,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    nowBox:"",
+    showBox:""
   },
   mutations: {
+    changeNowBox(state,nowBox){
+      state.nowBox = nowBox
+    },
+    changeShowBox(state,name){
+      state.showBox = name
+    }
   },
   actions: {
   },

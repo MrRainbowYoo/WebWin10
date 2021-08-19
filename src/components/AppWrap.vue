@@ -1,7 +1,7 @@
 <template>
   <div class="app-wrap">
     <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>
-    <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>
+    <AppIcon :imgUrl="apps[1].imgUrl" :name="apps[1].name"></AppIcon>
     <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>
     <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>
     <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>
@@ -18,9 +18,14 @@ import AppIcon from '@/components/AppIcon'
 export default {
     data(){
         return{
-            apps:[{
+            apps:[
+            {
                 imgUrl:require('@/assets/文档.png'),
                 name:'我的文档'
+            },
+            {
+                imgUrl:require('@/assets/电脑.png'),
+                name:'此电脑'
             }]
         }
     },

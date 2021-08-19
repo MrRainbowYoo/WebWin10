@@ -28,7 +28,7 @@ export default {
         box-sizing: border-box;
         cursor: default;
         margin-right: 5px;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
 
         p {
             width: 70%;

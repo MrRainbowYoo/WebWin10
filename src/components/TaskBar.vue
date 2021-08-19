@@ -10,14 +10,19 @@
       </div>
     </div>
 
-    <div class="bar-body"></div>
+    <div class="bar-body">
+      
+      <div class="win-item"><TaskApp /></div>
+            <div class="win-item"><TaskApp /></div>
+                  <div class="win-item"><TaskApp /></div>
+    </div>
     
     <div class="bar-right">
-      <div class="win-item" title="80%可用">
+      <div class="win-item" title="80%可用" ref="CellBox" id="CellBox" @click.stop="changeNowBox($event)">
         <span class="iconfont icon-iconset0251"></span>
       </div>
       <div class="win-item" title="TP_LINK_666
-  Internet访问">
+  Internet访问" ref="TestBox" id="TestBox" @click.stop="changeNowBox($event)">
         <span class="iconfont icon-wuxianwifi"></span>
       </div>
       <div class="win-item" title="扬声器：88%">
@@ -37,17 +42,30 @@
       </div>
       <div class="win-item"></div>      
     </div>
+
+    <!-- <transition name="showBox">
+      <component v-if="showBox" :is="nowBox.name" :width="nowBox.width" :height="nowBox.height" :bottom="nowBox.bottom" :left="nowBox.left"></component>
+    </transition> -->
   </div>
 </template>
 
 <script>
+import TaskApp from '@/components/TaskApp'
+// import CellBox from '@/components/CellBox'
+
 export default {
   name: 'TaskBar',
   data(){
     return{
       time:"",
       date:[],
-      weekday:""
+      weekday:"",
+      nowBox: ""
+    }
+  },
+  computed:{
+    showBox(){
+      return this.$store.state.showBox
     }
   },
   methods:{
@@ -66,20 +84,42 @@ export default {
       this.time = `${hours}:${minutes}`
       this.date = [year,month,day]
       this.weekday = weeks[week]
+    },
+    changeNowBox(e){
+      // console.log(e.currentTarget.id)
+      let boxName = e.currentTarget.id
+      if(this.showBox != boxName){
+        let obj = this.$refs[boxName].getBoundingClientRect()
+        let nowBox = {
+            name:boxName,
+            width: 350,
+            height: 250,
+            bottom: 50, //参考barHeight
+            left: parseInt(obj.left),
+        }
+        this.$store.commit('changeNowBox',nowBox)
+      }else
+        boxName = ""
+      this.$store.commit('changeShowBox',boxName)
     }
   },
   mounted(){
     this.updateCurrentTime()
+  },
+  components: {
+    TaskApp
   }
 }
 </script>
 <style scoped lang="less">
   @barHeight : 50px;
+  @bg: linear-gradient(rgb(30,30,30),rgb(26,26,26),rgb(30,30,30));
 
   .taskbar {
     width: 100%;
     height: @barHeight;
-    background-color: rgb(28, 28, 28);
+    // background-color: @bkColor;
+    background: @bg;
     display: flex;
     align-items: center;
     position: fixed;
@@ -102,7 +142,7 @@ export default {
   .win-item:hover {
     background-color: rgba(255, 255, 255, .2);
     & .icon-win {
-      color: rgb(91, 128, 236);
+      color: rgb(66, 156, 227);
     }
   }
 
@@ -115,6 +155,7 @@ export default {
     width: 250px;
     height: @barHeight;
     position: relative;
+    cursor: text;
 
     .icon-search {
       position: absolute;
@@ -124,22 +165,35 @@ export default {
       align-items: center;
       justify-content: center;
       font-weight: bold;
+      cursor: text;
     }
 
     & input {
       width: 100%;
       height: 100%;
-      border: none;
+      border: 3px solid transparent;
       outline: none;
       padding-left: 50px;
       padding-right: 10px;
       box-sizing: border-box;
       background-color: rgb(242, 242, 242);
     }
+
+    &:hover input{
+      border: 3px solid rgba(0, 0, 0, .3);
+      background-color: #fff;
+    }
+
+    & input:focus{
+      border: 3px solid rgb(0, 120, 215);
+    }
   }
 
   .bar-body {
+    margin-left: 5px;
     flex: 1;
+    display: flex;
+    height: 100%;
   }
 
   .bar-right {
