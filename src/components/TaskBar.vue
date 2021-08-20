@@ -21,8 +21,8 @@
       <div class="win-item" title="80%可用" ref="CellBox" id="CellBox" @click.stop="changeNowBox($event)">
         <span class="iconfont icon-iconset0251"></span>
       </div>
-      <div class="win-item" title="TP_LINK_666
-  Internet访问" ref="TestBox" id="TestBox" @click.stop="changeNowBox($event)">
+      <div class="win-item" title="TP-LINK_666
+  Internet访问" ref="WifiBox" id="WifiBox" @click.stop="changeNowBox($event)">
         <span class="iconfont icon-wuxianwifi"></span>
       </div>
       <div class="win-item" title="扬声器：88%">
@@ -42,16 +42,11 @@
       </div>
       <div class="win-item"></div>      
     </div>
-
-    <!-- <transition name="showBox">
-      <component v-if="showBox" :is="nowBox.name" :width="nowBox.width" :height="nowBox.height" :bottom="nowBox.bottom" :left="nowBox.left"></component>
-    </transition> -->
   </div>
 </template>
 
 <script>
 import TaskApp from '@/components/TaskApp'
-// import CellBox from '@/components/CellBox'
 
 export default {
   name: 'TaskBar',
@@ -86,16 +81,23 @@ export default {
       this.weekday = weeks[week]
     },
     changeNowBox(e){
-      // console.log(e.currentTarget.id)
       let boxName = e.currentTarget.id
       if(this.showBox != boxName){
         let obj = this.$refs[boxName].getBoundingClientRect()
         let nowBox = {
             name:boxName,
-            width: 350,
-            height: 250,
             bottom: 50, //参考barHeight
             left: parseInt(obj.left),
+        }
+        switch(boxName){
+          case 'CellBox':
+            nowBox.width = 350;
+            nowBox.height = 250;
+            break;
+          case 'WifiBox':
+            nowBox.width = 350;
+            nowBox.height = 500;
+            break
         }
         this.$store.commit('changeNowBox',nowBox)
       }else

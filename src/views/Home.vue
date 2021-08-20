@@ -14,7 +14,7 @@
 import TaskBar from '@/components/TaskBar'
 import AppWrap from '@/components/AppWrap'
 import CellBox from '@/components/CellBox'
-import TestBox from '@/components/TestBox'
+import WifiBox from '@/components/WifiBox'
 
 export default {
   name: 'Home',
@@ -22,7 +22,7 @@ export default {
     TaskBar,
     AppWrap,
     CellBox,
-    TestBox
+    WifiBox
   },
   data(){
     return {
