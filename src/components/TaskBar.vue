@@ -25,13 +25,13 @@
   Internet访问" ref="WifiBox" id="WifiBox" @click.stop="changeNowBox($event)">
         <span class="iconfont icon-wuxianwifi"></span>
       </div>
-      <div class="win-item" title="扬声器：88%">
+      <div class="win-item" title="扬声器：88%" ref="VolumeBox" id="VolumeBox" @click.stop="changeNowBox($event)">
         <span class="iconfont icon-volume"></span>
       </div>
       <div class="win-item" title="中文模式">
         <span class="language">中</span>
       </div>      
-      <div class="win-item" :title="date[0]+'年'+date[1]+'月'+date[2]+'日'+'\n星期'+weekday">
+      <div class="win-item" :title="date[0]+'年'+date[1]+'月'+date[2]+'日'+'\n星期'+weekday" ref="CalendarBox" id="CalendarBox" @click.stop="changeNowBox($event)">
         <div class="win-time">
           <div class="time">{{time}}</div>
           <div class="date">{{date[0]+"/"+date[1]+"/"+date[2]}}</div>
@@ -55,7 +55,8 @@ export default {
       time:"",
       date:[],
       weekday:"",
-      nowBox: ""
+      nowBox: "",
+      timer:null
     }
   },
   computed:{
@@ -65,7 +66,7 @@ export default {
   },
   methods:{
     updateCurrentTime(){
-      setInterval(this.getCurrentTime,500)
+      this.timer = setInterval(this.getCurrentTime,500)
     },
     getCurrentTime(){
       let dateObj = new Date()
@@ -83,11 +84,11 @@ export default {
     changeNowBox(e){
       let boxName = e.currentTarget.id
       if(this.showBox != boxName){
-        let obj = this.$refs[boxName].getBoundingClientRect()
+        // let obj = this.$refs[boxName].getBoundingClientRect()
         let nowBox = {
             name:boxName,
             bottom: 50, //参考barHeight
-            left: parseInt(obj.left),
+            right: -100,
         }
         switch(boxName){
           case 'CellBox':
@@ -96,8 +97,19 @@ export default {
             break;
           case 'WifiBox':
             nowBox.width = 350;
-            nowBox.height = 500;
+            nowBox.height = 600;
+            nowBox.right = -parseInt(nowBox.width / 2);
+            break;
+          case 'VolumeBox':
+            nowBox.width = 350;
+            nowBox.height = 100;
+            nowBox.right = -parseInt(nowBox.width / 2);
             break
+          case 'CalendarBox':
+            nowBox.width = 400;
+            nowBox.height = 600;
+            nowBox.right = -parseInt(nowBox.width / 2);
+            break                        
         }
         this.$store.commit('changeNowBox',nowBox)
       }else
@@ -105,8 +117,13 @@ export default {
       this.$store.commit('changeShowBox',boxName)
     }
   },
-  mounted(){
+  created(){
     this.updateCurrentTime()
+  },
+  beforeDestroy(){
+    if(this.timer){
+      clearInterval(this.timer)
+    }
   },
   components: {
     TaskApp

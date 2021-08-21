@@ -3,7 +3,7 @@
     <AppWrap />
     <!-- <CellBox width=350 height=250></CellBox> -->
     <transition name="showBox">
-      <component v-if="showBox === nowBox.name" :is="nowBox.name" :width="nowBox.width" :height="nowBox.height" :bottom="nowBox.bottom" :left="nowBox.left"></component>
+      <component v-if="showBox === nowBox.name" :is="nowBox.name" :width="nowBox.width" :height="nowBox.height" :bottom="nowBox.bottom" :right="nowBox.right"></component>
     </transition>    
     <TaskBar/>
   </div>
@@ -15,6 +15,8 @@ import TaskBar from '@/components/TaskBar'
 import AppWrap from '@/components/AppWrap'
 import CellBox from '@/components/CellBox'
 import WifiBox from '@/components/WifiBox'
+import VolumeBox from '@/components/VolumeBox'
+import CalendarBox from '@/components/CalendarBox'
 
 export default {
   name: 'Home',
@@ -22,7 +24,9 @@ export default {
     TaskBar,
     AppWrap,
     CellBox,
-    WifiBox
+    WifiBox,
+    VolumeBox,
+    CalendarBox
   },
   data(){
     return {
@@ -59,9 +63,10 @@ export default {
 
   
   .showBox-enter-active, .showBox-leave-active {
-    transition: opacity .5s
+    // transition: opacity .5s
   }
   .showBox-enter, .showBox-leave-active {
     opacity: 0;
+    // transform: translateY(100%);
   }  
 </style>

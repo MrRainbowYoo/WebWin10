@@ -1,5 +1,5 @@
 <template>
-    <SystemBox :width="width" :height="height" :bottom="bottom" :left="left" :padding=needPadding>
+    <SystemBox :width="width" :height="height" :bottom="bottom" :right="right" :padding=needPadding>
         <div class="scroll-wrap">
             <div class="wifi-item">
                 <div class="item-left iconfont icon-dianhua" style="transform:rotate(90deg);marginTop:5px;marginRight:5px"></div>
@@ -24,6 +24,19 @@
                 </div>
             </div>
         </div>
+        <div class="setting-wrap">
+            <div class="title">网络和Internet设置</div>
+            <div class="tip">更改设置，例如将某连接设置为按流量计费。</div>
+            <div class="modes">
+                <div class="mode-box" v-for="(item,index) in modes" :key="index" 
+                @click="changeMode(item)"
+                :class="{'active':item.name == activeMode}"
+                >
+                    <span class="iconfont" :class="item.icon"></span>
+                    <div>{{item.name}}</div>
+                </div>
+            </div>
+        </div>
     </SystemBox>
 </template>
 
@@ -42,20 +55,29 @@ export default {
                 {id:3,name:'TP-LINK_988',status:'安全'},
                 {id:4,name:'TP-LINK_988',status:'安全'},
             ],
+            modes: [
+                {name:'WLAN',icon:'icon-wuxianwifi'},
+                {name:'飞行模式',icon:'icon-feijichang'},
+                {name:'移动热点',icon:'icon-xinhao'},
+            ],
             selectedWifi:0,
-            connectedWifi:0
+            connectedWifi:0,
+            activeMode:'WLAN'
         }
     },
     methods:{
         changeWifi(id){
             this.selectedWifi = id
+        },
+        changeMode(item){
+            this.activeMode = item.name
         }
     },
     props:{
         width:Number,
         height:Number,
         bottom:Number,
-        left:Number,
+        right:Number,
     },
     components:{
         SystemBox
@@ -65,8 +87,28 @@ export default {
 
 <style lang="less">
     .scroll-wrap {
-        max-height: 80%;
-        overflow-y: scroll;
+        max-height: 75%;
+        overflow-y: hidden;
+
+        &:hover{
+            overflow-y: scroll;
+            overflow-y: overlay; //不占用空间，在内容之上
+        }
+
+        &::-webkit-scrollbar {
+            width: 10px;
+            height: 1px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, .5);
+        }
+
+        &::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, .2);
+        }
     }
 
     @keyframes clq {
@@ -83,6 +125,24 @@ export default {
         align-items: flex-start;
         padding: 15px;
         cursor: default;
+
+        &:nth-of-type(1) {
+            margin: 15px 0;
+            position: relative;
+
+            &::before{
+                content: "";
+                width: 90%;
+                height: 1px;
+                display: inline-block;
+                position: absolute;
+                left: 50%;
+                right: 50%;
+                transform: translateX(-50%);
+                bottom: -7px;
+                background-color: rgba(255, 255, 255, .2);
+            }
+        }
 
         &.selected {
             background-color: rgb(16, 88, 145);
@@ -171,6 +231,53 @@ export default {
 
                 &:hover {
                     border: 3px solid rgba(255, 255, 255, .5);
+                }
+            }
+        }
+    }
+
+    .setting-wrap {
+        margin-top: 10px;
+        padding: 0 10px;
+        box-sizing: border-box;
+
+        & .title {
+            color: rgb(166, 216, 255);
+            font-size: 17px;
+        }
+
+        & .tip {
+            color: rgb(127, 129, 133);
+            font-size: 12px;
+            margin: 3px 0 5px 0;
+        }
+        
+        .modes {
+            display: flex;
+            align-items: center;
+
+            .mode-box {
+                cursor: default;
+                width: 25%;
+                height: 80px;
+                margin-right: 5px;
+                color: #fff;
+                padding-left: 10px;
+                font-size: 12px;
+                box-sizing: border-box;
+                background-color: rgb(76, 78, 81);
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                border: 1px solid transparent;
+
+                &:hover {
+                    border: 1px solid #fff;
+                    background-color: rgb(94, 95, 97)
+                }
+                
+                &.active {
+                    background-color: rgb(0,119,215);
                 }
             }
         }

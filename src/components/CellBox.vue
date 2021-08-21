@@ -1,5 +1,5 @@
 <template>
-  <SystemBox :width="width" :height="height" :bottom="bottom" :left="left">
+  <SystemBox :width="width" :height="height" :bottom="bottom" :right="right">
     <div class="box-head">
       <span class="iconfont icon-iconset0251"> 80%</span>
     </div>
@@ -15,8 +15,8 @@
       <span
         style="
           float: left;
-          margintop: 5px;
-          fontsize: 12px;
+          marginTop: 5px;
+          fontSize: 12px;
           color: rgb(160, 159, 159);
         "
         >最长续航</span
@@ -24,8 +24,8 @@
       <span
         style="
           float: right;
-          margintop: 5px;
-          fontsize: 12px;
+          marginTop: 5px;
+          fontSize: 12px;
           color: rgb(160, 159, 159);
         "
         >最佳性能</span
@@ -52,7 +52,7 @@ export default {
     width: Number,
     height: Number,
     bottom: Number,
-    left: Number,
+    right: Number,
   },
   filters: {
     cellMode(cell) {
