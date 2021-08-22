@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2752656 */
-  src: url('iconfont.woff2?t=1629555331517') format('woff2'),
-       url('iconfont.woff?t=1629555331517') format('woff'),
-       url('iconfont.ttf?t=1629555331517') format('truetype');
+  src: url('iconfont.woff2?t=1629618193008') format('woff2'),
+       url('iconfont.woff?t=1629618193008') format('woff'),
+       url('iconfont.ttf?t=1629618193008') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,62 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-baitianmoshimingliangmoshi:before {
+  content: "\e632";
+}
+
+.icon-vpn:before {
+  content: "\eb71";
+}
+
+.icon-pad:before {
+  content: "\e608";
+}
+
+.icon-icon-:before {
+  content: "\e60d";
+}
+
+.icon-touping:before {
+  content: "\e7de";
+}
+
+.icon-wangluo-:before {
+  content: "\ecc7";
+}
+
+.icon-lanya:before {
+  content: "\e63e";
+}
+
+.icon-swticonshezhitianchong:before {
+  content: "\e7b4";
+}
+
+.icon-fenxiang:before {
+  content: "\e60f";
+}
+
+.icon-dingwei:before {
+  content: "\e603";
+}
+
+.icon-icon-test:before {
+  content: "\e609";
+}
+
+.icon-yejianmoshishenyemoshiyueliang:before {
+  content: "\e624";
+}
+
+.icon-di:before {
+  content: "\e610";
+}
+
+.icon-line-screenshotpingmujietu-01:before {
+  content: "\e6ed";
 }
 
 .icon-arrow-up-bold:before {

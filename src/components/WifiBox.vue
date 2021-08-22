@@ -75,7 +75,7 @@ export default {
     },
     props:{
         width:Number,
-        height:Number,
+        height:String,
         bottom:Number,
         right:Number,
     },

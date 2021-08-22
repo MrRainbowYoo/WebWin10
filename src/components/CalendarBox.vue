@@ -71,14 +71,14 @@ export default {
         return {
             needPadding: false,
             dateValue: new Date(),
-            time:"",
+            time:"00:00:00",
             date:"",
             timer:null
         }
     },
     props:{
         width:Number,
-        height:Number,
+        height:String,
         bottom:Number,
         right:Number
     },
@@ -261,9 +261,9 @@ export default {
                     border: 2px solid rgba(255, 255, 255, .3);
                 }
 
-                -webkit-mask-image: radial-gradient(circle at center, white 0%, transparent 80px);
-                -webkit-mask-repeat: no-repeat;
-                -webkit-mask-size: 160px 160px;
+                mask-image: radial-gradient(circle at center, white 0%, transparent 80px);
+                mask-repeat: no-repeat;
+                mask-size: 160px 160px;
                 visibility: hidden;
             }
         }

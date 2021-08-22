@@ -37,7 +37,7 @@
           <div class="date">{{date[0]+"/"+date[1]+"/"+date[2]}}</div>
         </div>
       </div>      
-      <div class="win-item" title="没有新通知(关闭)">
+      <div class="win-item" title="没有新通知(关闭)" ref="NoticeBox" id="NoticeBox" @click.stop="changeNowBox($event)">
         <span class="iconfont icon-icon--"></span>
       </div>
       <div class="win-item"></div>      
@@ -93,23 +93,28 @@ export default {
         switch(boxName){
           case 'CellBox':
             nowBox.width = 350;
-            nowBox.height = 250;
+            nowBox.height = '250px';
             break;
           case 'WifiBox':
             nowBox.width = 350;
-            nowBox.height = 600;
+            nowBox.height = '600px';
             nowBox.right = -parseInt(nowBox.width / 2);
             break;
           case 'VolumeBox':
             nowBox.width = 350;
-            nowBox.height = 100;
+            nowBox.height = '100px';
             nowBox.right = -parseInt(nowBox.width / 2);
             break
           case 'CalendarBox':
             nowBox.width = 400;
-            nowBox.height = 600;
+            nowBox.height = '600px';
             nowBox.right = -parseInt(nowBox.width / 2);
-            break                        
+            break   
+          case 'NoticeBox':
+            nowBox.width = 400;
+            nowBox.height = `calc(100% - 50px)`;
+            nowBox.right = -parseInt(nowBox.width / 2);
+            break                                       
         }
         this.$store.commit('changeNowBox',nowBox)
       }else

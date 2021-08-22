@@ -17,6 +17,7 @@ import CellBox from '@/components/CellBox'
 import WifiBox from '@/components/WifiBox'
 import VolumeBox from '@/components/VolumeBox'
 import CalendarBox from '@/components/CalendarBox'
+import NoticeBox from '@/components/NoticeBox'
 
 export default {
   name: 'Home',
@@ -26,7 +27,8 @@ export default {
     CellBox,
     WifiBox,
     VolumeBox,
-    CalendarBox
+    CalendarBox,
+    NoticeBox
   },
   data(){
     return {
@@ -62,11 +64,11 @@ export default {
   }
 
   
-  .showBox-enter-active, .showBox-leave-active {
-    // transition: opacity .5s
-  }
-  .showBox-enter, .showBox-leave-active {
-    opacity: 0;
-    // transform: translateY(100%);
-  }  
+  // .showBox-enter-active, .showBox-leave-active {
+  //   // transition: opacity .5s
+  // }
+  // .showBox-enter, .showBox-leave-active {
+  //   opacity: 0;
+  //   // transform: translateY(100%);
+  // }  
 </style>

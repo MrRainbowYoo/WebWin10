@@ -1,6 +1,6 @@
 <template>
     <div class="system-box" 
-    :style="{width:width+'px',height:height+'px',bottom:bottom+'px',right:right+'px'}" 
+    :style="{width:width+'px',height:height,bottom:bottom+'px',right:right+'px'}" 
     :class="{'needPadding':padding}"
     @click.stop>
         <slot></slot>
@@ -15,7 +15,7 @@ export default {
     },
     props:{
         width:Number,
-        height:Number,
+        height:String,
         bottom:Number,
         right:Number,
         padding:{

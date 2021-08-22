@@ -22,13 +22,48 @@ export default {
   },
   props: {
     width: Number,
-    height: Number,
+    height: String,
     bottom: Number,
     right: Number,
   },
   components: {
     SystemBox,
   },
+  methods: {
+    // 防抖
+    debounce(func,wait){
+      let timeout;
+      return function(){
+        let context = this;
+        let args = arguments;
+        if(timeout) clearTimeout(timeout)
+        timeout = setTimeout(()=>{
+          func.apply(context,args)
+        },wait)
+      }
+    },
+    handleScroll(e){
+      let direction = e.deltaY > 0 ? 'down' : 'up'
+      if(direction === 'down'){
+        this.volume -= 2
+        if(this.volume < 0)
+          this.volume = 0
+      }else{
+        this.volume += 2
+        if(this.volume > 100)
+          this.volume = 100        
+      }
+    }
+  },
+  mounted() {
+    //监听鼠标滚动事件
+    // 注：不能使用debounce防抖，手动改变作用域会导致该事件无法在组件销毁时被移除，因而产生bug。
+    window.addEventListener('mousewheel', this.handleScroll, true)
+  },
+  destroyed(){
+    
+    window.removeEventListener('mousewheel',this.handleScroll,true)
+  }
 };
 </script>
 
