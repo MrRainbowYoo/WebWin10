@@ -18,6 +18,7 @@ import WifiBox from '@/components/WifiBox'
 import VolumeBox from '@/components/VolumeBox'
 import CalendarBox from '@/components/CalendarBox'
 import NoticeBox from '@/components/NoticeBox'
+import StartBox from '@/components/StartBox'
 
 export default {
   name: 'Home',
@@ -28,7 +29,8 @@ export default {
     WifiBox,
     VolumeBox,
     CalendarBox,
-    NoticeBox
+    NoticeBox,
+    StartBox
   },
   data(){
     return {
@@ -61,6 +63,7 @@ export default {
     padding: 10px;
     box-sizing: border-box;
     display: flex;
+    position: relative;
   }
 
   

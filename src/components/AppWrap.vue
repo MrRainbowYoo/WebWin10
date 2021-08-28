@@ -2,8 +2,8 @@
   <div class="app-wrap">
     <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>
     <AppIcon :imgUrl="apps[1].imgUrl" :name="apps[1].name"></AppIcon>
-    <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>
-    <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>
+    <AppIcon :imgUrl="apps[2].imgUrl" :name="apps[2].name"></AppIcon>
+    <AppIcon :imgUrl="apps[3].imgUrl" :name="apps[3].name"></AppIcon>
     <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>
     <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>
     <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>
@@ -20,12 +20,20 @@ export default {
         return{
             apps:[
             {
-                imgUrl:require('@/assets/文档.png'),
+                imgUrl:require('@/assets/Hotpot.png'),
                 name:'我的文档'
             },
             {
                 imgUrl:require('@/assets/电脑.png'),
                 name:'此电脑'
+            },
+            {
+                imgUrl:require('@/assets/网络.png'),
+                name:'网络'
+            },
+            {
+                imgUrl:require('@/assets/回收站.png'),
+                name:'回收站'
             }]
         }
     },

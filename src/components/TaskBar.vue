@@ -1,7 +1,7 @@
 <template>
   <div class="taskbar">
     <div class="bar-left">
-      <div class="win-item" title="开始">
+      <div class="win-item" title="开始" ref="StartBox" id="StartBox" @click.stop="changeNowBox($event)">
         <span class="iconfont icon-win"></span>
       </div>
       <div class="win-search">
@@ -87,34 +87,39 @@ export default {
         // let obj = this.$refs[boxName].getBoundingClientRect()
         let nowBox = {
             name:boxName,
-            bottom: 50, //参考barHeight
-            right: -100,
+            bottom: 0, //参考barHeight
         }
         switch(boxName){
           case 'CellBox':
             nowBox.width = 350;
             nowBox.height = '250px';
+            nowBox.right = '-100px'
             break;
           case 'WifiBox':
             nowBox.width = 350;
             nowBox.height = '600px';
-            nowBox.right = -parseInt(nowBox.width / 2);
+            nowBox.right = -parseInt(nowBox.width / 2)+'px';
             break;
           case 'VolumeBox':
             nowBox.width = 350;
             nowBox.height = '100px';
-            nowBox.right = -parseInt(nowBox.width / 2);
+            nowBox.right = -parseInt(nowBox.width / 2)+'px';
             break
           case 'CalendarBox':
             nowBox.width = 400;
             nowBox.height = '600px';
-            nowBox.right = -parseInt(nowBox.width / 2);
+            nowBox.right = -parseInt(nowBox.width / 2)+'px';
             break   
           case 'NoticeBox':
             nowBox.width = 400;
-            nowBox.height = `calc(100% - 50px)`;
-            nowBox.right = -parseInt(nowBox.width / 2);
-            break                                       
+            nowBox.height = `100%`;
+            nowBox.right = -parseInt(nowBox.width / 2)+'px';
+            break
+          case 'StartBox':
+            nowBox.width = 600;
+            nowBox.height = '600px';
+            nowBox.right =  `calc(100% - ${nowBox.width*1.5}px)`
+            break                                      
         }
         this.$store.commit('changeNowBox',nowBox)
       }else

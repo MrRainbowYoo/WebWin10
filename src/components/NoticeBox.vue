@@ -114,7 +114,7 @@ export default {
     width: Number,
     height: String,
     bottom: Number,
-    right: Number,
+    right: String,
   },
   components: { SystemBox },
 };
