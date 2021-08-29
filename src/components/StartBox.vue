@@ -9,27 +9,27 @@
     <div class="start-box">
       <div class="start-float">
         <div class="start-item">
-          <span class="iconfont icon-wuxianwifi"></span>
+          <span class="iconfont icon-ziyuan"></span>
           <span class="item-name">开始</span>
         </div>
         <div class="start-item">
-          <span class="iconfont icon-wuxianwifi"></span>
+          <span class="iconfont icon-yonghufangkeshu"></span>
           <span class="item-name">Admin</span>
         </div>
         <div class="start-item">
-          <span class="iconfont icon-wuxianwifi"></span>
+          <span class="iconfont icon-wenjian"></span>
           <span class="item-name">文档</span>
         </div>
         <div class="start-item">
-          <span class="iconfont icon-wuxianwifi"></span>
+          <span class="iconfont icon-tupian"></span>
           <span class="item-name">图片</span>
         </div>
         <div class="start-item">
-          <span class="iconfont icon-wuxianwifi"></span>
+          <span class="iconfont icon-swticonshezhitianchong"></span>
           <span class="item-name">设置</span>
         </div>
         <div class="start-item">
-          <span class="iconfont icon-wuxianwifi"></span>
+          <span class="iconfont icon-guanji"></span>
           <span class="item-name">电源</span>
         </div>
       </div>
@@ -39,26 +39,9 @@
         </div>
         <div class="start-right">
           <div class="right-top">
-            <div class="right-item">
-              <img :src="iconImg" alt="" />
-              <div>运行</div>
-            </div>
-            <div class="right-item">
-              <img :src="iconImg" alt="" />
-              <div>任务管理器</div>
-            </div>
-            <div class="right-item">
-              <img :src="iconImg" alt="" />
-              <div>命令提示符</div>
-            </div>
-            <div class="right-item">
-              <img :src="iconImg" alt="" />
-              <div>控制面板</div>
-            </div>
-
-            <div class="right-item">
-              <img :src="iconImg" alt="" />
-              <div>控制面板</div>
+            <div class="right-item" v-for="(item,index) in rightData" :key="index">
+              <img :src="item.img" alt="" />
+              <div>{{item.name}}</div>
             </div>
           </div>
         </div>
@@ -78,6 +61,27 @@ export default {
     return {
       needPadding: false,
       iconImg: require("@/assets/文档.png"),
+      rightData: [
+        {
+          img: require('@/assets/运行.png'),
+          name: '运行'
+        },
+                {
+          img: require('@/assets/任务管理器.png'),
+          name: '任务管理器'
+        },
+                {
+          img: require('@/assets/命令提示符.png'),
+          name: '命令提示符'
+        },
+                {
+          img: require('@/assets/控制面板.png'),
+          name: '控制面板'
+        },                {
+          img: require('@/assets/onedrive.png'),
+          name: 'OneDrive'
+        },
+      ],
       treeData: treeData
     };
   },
@@ -156,6 +160,8 @@ export default {
       width: 40%;
       height: 100%;
       padding-right: 10px;
+      padding-bottom: 30px;
+      box-sizing: border-box;
       overflow-y: hidden;
 
       &:hover {

@@ -3,7 +3,8 @@
     <li v-for="(item, index) in treeData" :key="index" :class="{'indented': !item.isParent}">
       <span class='item' @click="handleClick(item)">
         <div class="img-wrap" v-if="item.img">
-          <img :src="item.img">
+          <img :src="item.img" v-if="!item.isExpand && !item.children">
+          <img v-else :src="!item.isExpand && item.children ? item.img : openFile">
         </div>
         <span class="title" :title="item.text">{{item.text}}</span>
         <span class="icon">
@@ -24,6 +25,11 @@
 
 export default {
   name: 'MyTree',
+  data(){
+    return {
+      openFile:require('@/assets/文件夹1.png')
+    }
+  },
   props: {
     treeData: {
       type: Array,
@@ -34,7 +40,8 @@ export default {
   },
   methods: {
     handleClick(item){
-      item.isExpand = !item.isExpand
+      if(item.children)
+        item.isExpand = !item.isExpand
     }
   }
 }
@@ -68,7 +75,8 @@ export default {
             }
 
             .img-wrap {
-              width: @listSize*0.8;
+              min-width: @listSize*0.8;
+              max-width: @listSize*0.8;
               height: @listSize*0.8;
               margin-right: 5px;
               display: flex;

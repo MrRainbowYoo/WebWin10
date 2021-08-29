@@ -20,7 +20,7 @@ export default {
         return{
             apps:[
             {
-                imgUrl:require('@/assets/Hotpot.png'),
+                imgUrl: require('@/assets/我的文档.png'),
                 name:'我的文档'
             },
             {
