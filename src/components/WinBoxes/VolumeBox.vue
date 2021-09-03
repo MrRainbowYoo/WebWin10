@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import SystemBox from "@/components/SystemBox";
+import SystemBox from "@/components/WinBoxes/SystemBox";
 
 export default {
   data() {

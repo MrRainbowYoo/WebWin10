@@ -1,7 +1,7 @@
 <template>
   <div class="home"  @click="hideBox">
     <AppWrap />
-    <!-- <CellBox width=350 height=250></CellBox> -->
+    <Notebook />
     <transition name="showBox">
       <component v-if="showBox === nowBox.name" :is="nowBox.name" :width="nowBox.width" :height="nowBox.height" :bottom="nowBox.bottom" :right="nowBox.right"></component>
     </transition>    
@@ -13,13 +13,14 @@
 // @ is an alias to /src
 import TaskBar from '@/components/TaskBar'
 import AppWrap from '@/components/AppWrap'
-import CellBox from '@/components/CellBox'
-import WifiBox from '@/components/WifiBox'
-import VolumeBox from '@/components/VolumeBox'
-import CalendarBox from '@/components/CalendarBox'
-import NoticeBox from '@/components/NoticeBox'
-import StartBox from '@/components/StartBox'
+import CellBox from '@/components/WinBoxes/CellBox'
+import WifiBox from '@/components/WinBoxes/WifiBox'
+import VolumeBox from '@/components/WinBoxes/VolumeBox'
+import CalendarBox from '@/components/WinBoxes/CalendarBox'
+import NoticeBox from '@/components/WinBoxes/NoticeBox'
+import StartBox from '@/components/WinBoxes/StartBox'
 
+import Notebook from '@/components/Notebook'
 export default {
   name: 'Home',
   components: {
@@ -30,7 +31,8 @@ export default {
     VolumeBox,
     CalendarBox,
     NoticeBox,
-    StartBox
+    StartBox,
+    Notebook
   },
   data(){
     return {
@@ -64,6 +66,7 @@ export default {
     box-sizing: border-box;
     display: flex;
     position: relative;
+    overflow: hidden;
   }
 
   

@@ -51,8 +51,8 @@
 </template>
 
 <script>
-import SystemBox from "@/components/SystemBox";
-import MyTree from "@/components/MyTree";
+import SystemBox from "@/components/WinBoxes/SystemBox";
+import MyTree from "@/components/WinBoxes/MyTree";
 import treeData from '@/assets/winFiles.js'
 
 export default {

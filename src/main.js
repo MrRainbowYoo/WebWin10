@@ -14,3 +14,8 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+// 禁用右键
+document.oncontextmenu = function() {
+  return false;
+};

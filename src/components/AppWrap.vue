@@ -4,9 +4,11 @@
     <AppIcon :imgUrl="apps[1].imgUrl" :name="apps[1].name"></AppIcon>
     <AppIcon :imgUrl="apps[2].imgUrl" :name="apps[2].name"></AppIcon>
     <AppIcon :imgUrl="apps[3].imgUrl" :name="apps[3].name"></AppIcon>
+    <AppIcon :imgUrl="apps[4].imgUrl" :name="apps[4].name"></AppIcon>
     <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>
     <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>
     <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>
+    <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>      
     <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>
     <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>      
   </div>
@@ -34,6 +36,10 @@ export default {
             {
                 imgUrl:require('@/assets/回收站.png'),
                 name:'回收站'
+            },
+            {
+                imgUrl:require('@/assets/记事本.png'),
+                name:'记事本'
             }]
         }
     },
