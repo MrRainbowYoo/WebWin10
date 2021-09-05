@@ -3,9 +3,9 @@
         <div class="winapp-header-icon"><img :src="iconUrl" alt=""></div>
         <div class="winapp-header-name">{{headerName}}</div>
         <div class="winapp-header-right">
-            <span class="iconfont icon-zuixiaohua" title="最小化"></span>
+            <span class="iconfont icon-zuixiaohua" title="最小化" @click="fatherHidden()"></span>
             <span class="iconfont" @click="fatherMax()" :class="isMax ? 'icon-zuidahua':'icon-window-maximize'" :title="isMax ? '向下还原':'最大化'"></span>
-            <span class="iconfont icon-cha" title="关闭"></span>
+            <span class="iconfont icon-cha" title="关闭" @click="fatherClose()"></span>
         </div>
     </div>
 </template>
@@ -35,6 +35,12 @@ export default {
     methods: {
         fatherMax(){
             this.$emit('setMax')
+        },
+        fatherClose(){
+            this.$emit('closeApp')
+        },
+        fatherHidden(){
+            this.$emit('hiddenApp')
         }
     }
 }

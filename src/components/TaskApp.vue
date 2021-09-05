@@ -1,6 +1,6 @@
 <template>
   <div class="task-app">
-      <img :src="src1" alt="">
+      <img :src="iconUrl" alt="">
   </div>
 </template>
 
@@ -8,8 +8,11 @@
 export default {
     data(){
         return {
-            src1: require('@/assets/文档.png')
+            // src1: require('@/assets/文档.png')
         }
+    },
+    props: {
+        iconUrl: String
     }
 }
 </script>

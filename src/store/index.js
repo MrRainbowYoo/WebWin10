@@ -5,9 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    // Box 指的是任务栏弹出的各种功能小组件
     nowBox:"",
     showBox:"",
-    zIndex: 0
+    zIndex: 0,
+    openApps: [],
+    focusApp: 0
   },
   mutations: {
     changeNowBox(state,nowBox){
@@ -18,6 +21,12 @@ export default new Vuex.Store({
     },
     changeZIndex(state){
       state.zIndex ++
+    },
+    changeOpenApps(state,app){
+        state.openApps = app
+    },
+    changeFocusApp(state,app){
+      state.focusApp = app
     }
   },
   actions: {

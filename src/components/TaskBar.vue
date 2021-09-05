@@ -11,10 +11,10 @@
     </div>
 
     <div class="bar-body">
-      
-      <div class="win-item"><TaskApp /></div>
-            <div class="win-item"><TaskApp /></div>
-                  <div class="win-item"><TaskApp /></div>
+      <!-- 任务栏显示打开的程序 -->
+      <div class="win-item" v-for="app in openApps" :key="app.id" @click="hiddenApp(app)" :style="{'background':app.id == focusApp ? 'rgba(255, 255, 255, .2)':''}">
+        <TaskApp :iconUrl="app.iconUrl" />
+      </div>
     </div>
     
     <div class="bar-right">
@@ -62,6 +62,15 @@ export default {
   computed:{
     showBox(){
       return this.$store.state.showBox
+    },
+    openApps(){
+      return this.$store.state.openApps
+    },
+    focusApp(){
+      return this.$store.state.focusApp
+    },
+    zIndex(){
+      return this.$store.state.zIndex
     }
   },
   methods:{
@@ -125,6 +134,26 @@ export default {
       }else
         boxName = ""
       this.$store.commit('changeShowBox',boxName)
+    },
+    hiddenApp(app){
+      let appWraps = [...document.querySelectorAll('.winapp-wrap')]
+      let currentApp = appWraps.filter(item => item.getAttribute('data-id') == app.id)[0]
+
+      if(currentApp.style.display == 'none'){
+        currentApp.style.display = 'flex'
+        this.$store.commit('changeZIndex')
+        currentApp.style.zIndex = this.zIndex
+        this.$store.commit('changeFocusApp',currentApp.getAttribute('data-id'))
+      }else{
+        if(this.focusApp == currentApp.getAttribute('data-id')){
+          currentApp.style.display = 'none'
+          this.$store.commit('changeFocusApp',0)
+        }else{
+          this.$store.commit('changeZIndex')
+          currentApp.style.zIndex = this.zIndex
+          this.$store.commit('changeFocusApp',currentApp.getAttribute('data-id'))
+        }
+      }
     }
   },
   created(){

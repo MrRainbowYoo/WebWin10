@@ -1,8 +1,9 @@
 <template>
   <div class="home"  @click="hideBox">
     <AppWrap />
-    <Notebook />
-    <testApp />
+    <!-- <Notebook /> -->
+    <component :is="item.name" v-for="item in openApps" :key="item.id" :data-id="item.id"></component>
+    <!-- <testApp /> -->
     <transition name="showBox">
       <component v-if="showBox === nowBox.name" :is="nowBox.name" :width="nowBox.width" :height="nowBox.height" :bottom="nowBox.bottom" :right="nowBox.right"></component>
     </transition>    
@@ -23,6 +24,7 @@ import StartBox from '@/components/WinBoxes/StartBox'
 
 import Notebook from '@/components/Notebook'
 import testApp from '@/components/testApp'
+
 export default {
   name: 'Home',
   components: {
@@ -38,8 +40,7 @@ export default {
     testApp
   },
   data(){
-    return {
-    }
+    return {}
   },
   methods:{
     hideBox(){
@@ -57,7 +58,10 @@ export default {
       get(){
         return this.$store.state.showBox
       }
-    }
+    },
+    openApps(){
+        return this.$store.state.openApps
+    },
   }
 }
 </script>

@@ -41,6 +41,7 @@ export default {
         font-size: 14px;
         position: absolute;
         transform: translateX(-50%);
+        z-index: 9999;
     }
 
     .needPadding{

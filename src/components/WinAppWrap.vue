@@ -5,7 +5,7 @@
         v-drag="{setMax,isMax}"
         @mousedown.stop="changeZIndex($event)" 
     >
-        <WinAppHeader @setMax="setMax()" :isMax="isMax"/>
+        <WinAppHeader @setMax="setMax()"  @closeApp="closeApp()" @hiddenApp="hiddenApp()" :isMax="isMax"/>
         <slot></slot>
     </div>
 </template>
@@ -49,7 +49,23 @@ export default {
         changeZIndex(e){
             this.$store.commit('changeZIndex')
             e.currentTarget.style.zIndex = this.zIndex
-            console.log(e.currentTarget)
+            this.$store.commit('changeFocusApp',e.currentTarget.getAttribute('data-id'))
+        },
+        closeApp(){
+            let openApps = this.openApps
+            let id = this.$refs.winappwrap.getAttribute('data-id')
+            for(let i=0;i<openApps.length;i++){
+                if(openApps[i].id == id){
+                    openApps.splice(i,1)
+                    break;
+                }
+            }
+            this.$store.commit('changeOpenApps',openApps)
+        },
+        hiddenApp(){
+            // this.$refs.winappwrap.style.opacity = '0'
+            this.$refs.winappwrap.style.display = 'none'
+            this.$store.commit('changeFocusApp',0)
         }
     },
     components: { WinAppHeader },
@@ -57,12 +73,9 @@ export default {
         zIndex(){
             return this.$store.state.zIndex
         },
-        // initialPos(){
-        //     // 生成 [30,60] 随机数
-        //     let left = parseInt(Math.random()*60,10) + 30;
-        //     let top = parseInt(Math.random()*60,10) + 30;
-        //     return [left+'%',top+'%']
-        // }
+        openApps(){
+            return this.$store.state.openApps
+        }
     }
 }
 </script>
@@ -77,5 +90,6 @@ export default {
     transform: translate(-50%,-50%);
     transition: .2s;
     z-index: 0;
+    box-shadow: 0px 0px 5px 5px rgb(0 0 0 / 20%);
 }
 </style>

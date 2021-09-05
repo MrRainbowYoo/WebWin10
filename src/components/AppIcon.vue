@@ -1,5 +1,5 @@
 <template>
-  <div class="app-icon">
+  <div class="app-icon" @dblclick="openApp($event)">
       <img :src="imgUrl" alt="">
       <p>{{name}}</p>
   </div>
@@ -10,6 +10,43 @@ export default {
     props:{
         imgUrl:String,
         name:String
+    },
+    methods: {
+        openApp(e){
+            let app,appName = e.currentTarget.querySelector('p').innerHTML
+            let openApps = this.openApps
+            let id = new Date().getTime()
+            // console.log(appName,openApps,id)
+            switch(appName){
+                case '记事本':
+                    app = {
+                        name:'Notebook',
+                        iconUrl: require('@/assets/记事本icon.png'),
+                        id
+                    }
+                openApps.push(app)
+                this.$store.commit('changeOpenApps',openApps)
+                this.$store.commit('changeFocusApp',id)
+                break;
+            }
+
+            this.$nextTick(()=>{
+                let apps = [...document.querySelectorAll('.winapp-wrap')]
+                let length = apps.length
+                let currentApp = apps[length-1]
+                this.$store.commit('changeZIndex')
+                currentApp.style.zIndex = this.zIndex
+            })
+
+        }
+    },
+    computed:{
+        openApps(){
+            return this.$store.state.openApps
+        },
+        zIndex(){
+            return this.$store.state.zIndex
+        }
     }
 }
 </script>
