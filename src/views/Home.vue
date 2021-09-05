@@ -2,6 +2,7 @@
   <div class="home"  @click="hideBox">
     <AppWrap />
     <Notebook />
+    <testApp />
     <transition name="showBox">
       <component v-if="showBox === nowBox.name" :is="nowBox.name" :width="nowBox.width" :height="nowBox.height" :bottom="nowBox.bottom" :right="nowBox.right"></component>
     </transition>    
@@ -21,6 +22,7 @@ import NoticeBox from '@/components/WinBoxes/NoticeBox'
 import StartBox from '@/components/WinBoxes/StartBox'
 
 import Notebook from '@/components/Notebook'
+import testApp from '@/components/testApp'
 export default {
   name: 'Home',
   components: {
@@ -32,7 +34,8 @@ export default {
     CalendarBox,
     NoticeBox,
     StartBox,
-    Notebook
+    Notebook,
+    testApp
   },
   data(){
     return {

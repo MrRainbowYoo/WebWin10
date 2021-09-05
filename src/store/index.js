@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     nowBox:"",
-    showBox:""
+    showBox:"",
+    zIndex: 0
   },
   mutations: {
     changeNowBox(state,nowBox){
@@ -14,6 +15,9 @@ export default new Vuex.Store({
     },
     changeShowBox(state,name){
       state.showBox = name
+    },
+    changeZIndex(state){
+      state.zIndex ++
     }
   },
   actions: {

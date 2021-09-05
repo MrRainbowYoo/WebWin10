@@ -19,5 +19,6 @@
   background: url('./assets/wallpaper.jpg') no-repeat;
   background-size: 100% 100%;
   height: 100vh;
+  user-select: none;
 }
 </style>
