@@ -3,7 +3,7 @@
     <AppWrap />
     <!-- <Notebook /> -->
     <component :is="item.name" v-for="item in openApps" :key="item.id" :data-id="item.id"></component>
-    <!-- <testApp /> -->
+    <!-- <Browser /> -->
     <transition name="showBox">
       <component v-if="showBox === nowBox.name" :is="nowBox.name" :width="nowBox.width" :height="nowBox.height" :bottom="nowBox.bottom" :right="nowBox.right"></component>
     </transition>    
@@ -23,7 +23,7 @@ import NoticeBox from '@/components/WinBoxes/NoticeBox'
 import StartBox from '@/components/WinBoxes/StartBox'
 
 import Notebook from '@/components/Notebook'
-import testApp from '@/components/testApp'
+import Browser from '@/components/Browser'
 
 export default {
   name: 'Home',
@@ -37,7 +37,7 @@ export default {
     NoticeBox,
     StartBox,
     Notebook,
-    testApp
+    Browser
   },
   data(){
     return {}

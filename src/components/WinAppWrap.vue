@@ -19,6 +19,20 @@ export default {
             width: '800px',
             height: '500px',
             isMax: false,
+            initialWidth: '800px',
+            initialHeight: '500px'
+        }
+    },
+    props:{
+        newWidth: String,
+        newHeight: String
+    },
+    created(){
+        if(this.newWidth){
+            this.width = this.newWidth
+            this.height = this.newHeight
+            this.initialWidth = this.newWidth
+            this.initialHeight = this.newHeight
         }
     },
     methods: {
@@ -32,8 +46,8 @@ export default {
                         this.$refs.winappwrap.style.top = '50%'
                         this.isMax = true
                     }else{
-                        this.width = '800px'
-                        this.height = '500px'
+                        this.width = this.initialWidth
+                        this.height = this.initialHeight
                         this.isMax = false
                     }
                     break;

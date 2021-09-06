@@ -24,16 +24,26 @@ export default {
                         iconUrl: require('@/assets/记事本icon.png'),
                         id
                     }
-                openApps.push(app)
-                this.$store.commit('changeOpenApps',openApps)
-                this.$store.commit('changeFocusApp',id)
-                break;
-            }
 
+                    // openApps.push(app)
+                    // this.$store.commit('changeOpenApps',openApps)
+                    // this.$store.commit('changeFocusApp',id)
+                break;
+                case 'Google Chrome':
+                    app = {
+                        name: 'Browser',
+                        iconUrl:  require('@/assets/chrome.png'),
+                        id
+                    }
+                    break;
+            }
+            openApps.push(app)
+            this.$store.commit('changeOpenApps',openApps)
+            this.$store.commit('changeFocusApp',id)
+            
             this.$nextTick(()=>{
                 let apps = [...document.querySelectorAll('.winapp-wrap')]
-                let length = apps.length
-                let currentApp = apps[length-1]
+                let currentApp = apps.filter(item => item.getAttribute('data-id') == id)[0]
                 this.$store.commit('changeZIndex')
                 currentApp.style.zIndex = this.zIndex
             })

@@ -58,7 +58,7 @@ export default {
 
         &-icon img{
             width: 20px;
-            height: 25px;
+            // height: 25px;
             margin: 3px 5px 0 5px;
         }
 

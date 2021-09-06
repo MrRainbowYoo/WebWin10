@@ -40,7 +40,7 @@
       <div class="win-item" title="没有新通知(关闭)" ref="NoticeBox" id="NoticeBox" @click.stop="changeNowBox($event)">
         <span class="iconfont icon-icon--"></span>
       </div>
-      <div class="win-item"></div>      
+      <div class="win-item" @click="hideAll()"></div>      
     </div>
   </div>
 </template>
@@ -154,6 +154,16 @@ export default {
           this.$store.commit('changeFocusApp',currentApp.getAttribute('data-id'))
         }
       }
+    },
+    hideAll(){
+      let appWraps = [...document.querySelectorAll('.winapp-wrap')]
+      console.log(appWraps)
+      this.$store.commit('changeFocusApp',0)
+      this.$nextTick(()=>{
+        for(let i=0;i<appWraps.length;i++){
+          appWraps[i].style.display = 'none'
+        }
+      })
     }
   },
   created(){
