@@ -4,6 +4,7 @@
     <!-- <Notebook /> -->
     <component :is="item.name" v-for="item in openApps" :key="item.id" :data-id="item.id"></component>
     <!-- <Browser /> -->
+    <Draw />
     <transition name="showBox">
       <component v-if="showBox === nowBox.name" :is="nowBox.name" :width="nowBox.width" :height="nowBox.height" :bottom="nowBox.bottom" :right="nowBox.right"></component>
     </transition>    
@@ -22,8 +23,10 @@ import CalendarBox from '@/components/WinBoxes/CalendarBox'
 import NoticeBox from '@/components/WinBoxes/NoticeBox'
 import StartBox from '@/components/WinBoxes/StartBox'
 
-import Notebook from '@/components/Notebook'
-import Browser from '@/components/Browser'
+import Notebook from '@/components/DeskApps/Notebook'
+import Browser from '@/components/DeskApps/Browser'
+import Vscode from '@/components/DeskApps/Vscode'
+import Draw from '@/components/DeskApps/Draw'
 
 export default {
   name: 'Home',
@@ -37,7 +40,9 @@ export default {
     NoticeBox,
     StartBox,
     Notebook,
-    Browser
+    Browser,
+    Vscode,
+    Draw
   },
   data(){
     return {}

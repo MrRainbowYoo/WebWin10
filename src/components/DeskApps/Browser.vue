@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import WinAppWrap from './WinAppWrap'
+import WinAppWrap from '@/components/WinAppWrap'
 
 export default {
     data(){

@@ -6,8 +6,8 @@
     <AppIcon :imgUrl="apps[3].imgUrl" :name="apps[3].name"></AppIcon>
     <AppIcon :imgUrl="apps[4].imgUrl" :name="apps[4].name"></AppIcon>
     <AppIcon :imgUrl="apps[5].imgUrl" :name="apps[5].name"></AppIcon>
-    <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>
-    <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>
+    <AppIcon :imgUrl="apps[6].imgUrl" :name="apps[6].name"></AppIcon>
+    <AppIcon :imgUrl="apps[7].imgUrl" :name="apps[7].name"></AppIcon>
     <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>      
     <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>
     <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>      
@@ -44,6 +44,14 @@ export default {
             {
                 imgUrl:require('@/assets/chrome.png'),
                 name: 'Google Chrome'
+            },
+            {
+                imgUrl:require('@/assets/vscode.png'),
+                name: 'Vscode'
+            },
+            {
+                imgUrl:require('@/assets/draw.png'),
+                name: '画图'
             }]
         }
     },

@@ -59,6 +59,11 @@ export default {
                     this.isMax = true
                     break;
             }
+
+            // 如果不设置setTimeout，那么计算的宽度和高度是改变前的。
+            setTimeout(()=>{
+                this.$emit('windowStatus',this.$refs.winappwrap.getBoundingClientRect())
+            },700)            
         },
         changeZIndex(e){
             this.$store.commit('changeZIndex')

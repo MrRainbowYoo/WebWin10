@@ -1,5 +1,5 @@
 <template>
-    <div class="winapp-header" :style="{'background':bgColor}">
+    <div class="winapp-header" :style="{'background':bgColor,'color':fontColor}">
         <div class="winapp-header-icon"><img :src="iconUrl" alt=""></div>
         <div class="winapp-header-name">{{headerName}}</div>
         <div class="winapp-header-right">
@@ -16,7 +16,8 @@ export default {
         return {
             iconUrl: this.iconUrl,
             headerName: this.headerName,
-            bgColor: this.bgColor
+            bgColor: this.bgColor,
+            fontColor: this.fontColor
         }
     },
     props: {
@@ -30,6 +31,9 @@ export default {
         headerName:{},
         bgColor:{
             default: '#fff'
+        },
+        fontColor:{
+            default: '#000'
         }
     },
     methods: {

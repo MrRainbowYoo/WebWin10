@@ -1,5 +1,5 @@
 <template>
-  <div class="app-icon" @dblclick="openApp($event)">
+  <div class="app-icon" @dblclick="openApp($event)" :title="name">
       <img :src="imgUrl" alt="">
       <p>{{name}}</p>
   </div>
@@ -24,11 +24,7 @@ export default {
                         iconUrl: require('@/assets/记事本icon.png'),
                         id
                     }
-
-                    // openApps.push(app)
-                    // this.$store.commit('changeOpenApps',openApps)
-                    // this.$store.commit('changeFocusApp',id)
-                break;
+                    break;
                 case 'Google Chrome':
                     app = {
                         name: 'Browser',
@@ -36,6 +32,20 @@ export default {
                         id
                     }
                     break;
+                case 'Vscode':
+                    app = {
+                        name: 'Vscode',
+                        iconUrl: require('@/assets/vscode.png'),
+                        id
+                    }
+                    break;
+                default:
+                    this.$message({
+                        type:'info',
+                        message:'Coming Soon',
+                        showClose:true
+                    })
+                    return ;
             }
             openApps.push(app)
             this.$store.commit('changeOpenApps',openApps)
