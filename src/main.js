@@ -22,6 +22,9 @@ Vue.directive('drag', (el, bingding) => {
     let clientX, clientY
     let objX, objY
 
+    // 添加判断wrapName，如果是draw，则不需要过度动画
+    let wrapName = moveBox.getAttribute('data-name')
+
     moveTitle.onmousedown = (e) => {
       // 只允许左键
       if (e.button !== 0)
@@ -37,7 +40,8 @@ Vue.directive('drag', (el, bingding) => {
       document.onmousemove = (event) => {
         // 边界判断
         if (moveBox.getBoundingClientRect().top <= 0) {
-          moveBox.style.transition = '.2s'
+          if(wrapName != 'draw')
+            moveBox.style.transition = '.2s'
           moveTitle.style.cursor = 'default'
           let boxIsMax = bingding.value.isMax
           if (boxIsMax)
@@ -53,7 +57,8 @@ Vue.directive('drag', (el, bingding) => {
         document.onmousemove = null
         document.onmouseup = null
         moveTitle.style.cursor = 'default'
-        moveBox.style.transition = '.2s'
+        if(wrapName != 'draw')
+          moveBox.style.transition = '.2s'
       }
     }
 

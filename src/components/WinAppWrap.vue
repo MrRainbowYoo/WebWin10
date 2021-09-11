@@ -1,7 +1,8 @@
 <template>
     <div class="winapp-wrap" 
         :style="{'width':width,'height':height}" 
-        ref="winappwrap" 
+        ref="winappwrap"
+        :data-name="wrapName"
         v-drag="{setMax,isMax}"
         @mousedown.stop="changeZIndex($event)" 
     >
@@ -25,7 +26,8 @@ export default {
     },
     props:{
         newWidth: String,
-        newHeight: String
+        newHeight: String,
+        wrapName: String
     },
     created(){
         if(this.newWidth){
@@ -60,10 +62,10 @@ export default {
                     break;
             }
 
-            // 如果不设置setTimeout，那么计算的宽度和高度是改变前的。
-            setTimeout(()=>{
+            //如果不设置setTimeout，那么计算的宽度和高度是改变前的。
+            this.$nextTick(()=>{
                 this.$emit('windowStatus',this.$refs.winappwrap.getBoundingClientRect())
-            },700)            
+            })            
         },
         changeZIndex(e){
             this.$store.commit('changeZIndex')
