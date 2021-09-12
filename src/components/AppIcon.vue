@@ -39,6 +39,13 @@ export default {
                         id
                     }
                     break;
+                case '画图':
+                    app = {
+                        name: 'Draw',
+                        iconUrl: require('@/assets/draw.png'),
+                        id
+                    }
+                    break;
                 default:
                     this.$message({
                         type:'info',

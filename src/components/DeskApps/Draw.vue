@@ -18,6 +18,10 @@
                 @click="changeColor(index)"
                 ></div>
             </div>
+            <div class="other-wrap">
+                <img :src="eraserUrl" alt="" @click="eraser">
+                <img :src="trashUrl" alt="" @click="clearCanvas">
+            </div>
         </div>
     </WinAppWrap>
 </template>
@@ -39,7 +43,9 @@ export default {
                 lineWidth: 10
             },
             colors: ['#000000','#1abc9c','#2ecc71','#3498db','#9b59b6','#34495e','#f1c40f','#e74c3c','#95a5a6','#d35400'],
-            activeColor: 0
+            activeColor: 0,
+            eraserUrl: require('@/assets/eraser.png'),
+            trashUrl: require('@/assets/trash.png')
         }
     },
     components: { WinAppWrap },
@@ -58,18 +64,33 @@ export default {
             canvas.width = data.width
             canvas.height = data.height - 30 - 50
             this.context.putImageData(canvasData,0,0)
+            this.changeCanvasConfig()
         },
         changeColor(index){
             this.activeColor = index
-            this.context.strokeStyle = this.colors[index]
+            this.config.strokeStyle = this.colors[index]
+            this.changeCanvasConfig()
+            this.$refs.canvas.style.cursor = 'url(https://5fou.com/i/2021/09/12/m2y5t7.ico),auto'
         },
-        initCanvas() {
-            const canvas = this.$refs.canvas
-            this.context = canvas.getContext('2d')
+        changeCanvasConfig(){
             this.context.strokeStyle = this.config.strokeStyle
             this.context.lineWidth = this.config.lineWidth
             this.context.lineCap = 'round'
             this.context.lineJoin = 'round'
+        },
+        eraser(){
+            this.context.strokeStyle = '#fff'
+            this.context.lineWidth = 50
+            this.$refs.canvas.style.cursor = 'url(https://5fou.com/i/2021/09/12/n9fmty.ico),auto'
+        },
+        clearCanvas(){
+            let canvas = this.$refs.canvas
+            this.context.clearRect(0,0,canvas.width,canvas.height)
+        },
+        initCanvas() {
+            const canvas = this.$refs.canvas
+            this.context = canvas.getContext('2d')
+            this.changeCanvasConfig()
             this.context.save()
         },
         mouseDown(e) {
@@ -80,7 +101,7 @@ export default {
         mouseMove(e){
             if(this.isDrawing){
                 this.drawing(e.offsetX,e.offsetY)
-            }
+            }            
         },
         mouseUp(){
             this.isDrawing = false
@@ -98,9 +119,14 @@ export default {
     .canvas-wrap{
         flex: 1;
         background-color: #fff;
+        position: relative;
 
         canvas {
             background-color: #fff; 
+            cursor:url(https://5fou.com/i/2021/09/12/m2y5t7.ico),auto;
+
+            // 橡皮擦
+            // cursor: url(https://5fou.com/i/2021/09/12/n9fmty.ico),auto;
         }
     }
 
@@ -109,7 +135,6 @@ export default {
         bottom: 0;
         left: 50%;
         transform: translate(-50%);
-        width: 80%;
         height: 50px;
         box-shadow: 0 0 5px 5px rgba(0, 0, 0, .2);
         padding: 0 20px;
@@ -119,7 +144,7 @@ export default {
 
         .color-wrap {
             display: flex;
-            width: 80%;
+            // width: 80%;
 
             .color-item {
                 width: 30px;
@@ -145,6 +170,21 @@ export default {
                 border: 5px solid transparent;
                 border-top: 5px solid #95a5a6;
             }            
+        }
+
+        .other-wrap {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            border-left: 1px dashed rgba(0, 0, 0, .2);
+            // background-color: tomato;
+
+            img {
+                height: 80%;
+                cursor: pointer;
+                margin: 0 10px;
+            }
         }
 
     }    
