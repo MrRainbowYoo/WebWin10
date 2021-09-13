@@ -45,7 +45,8 @@ export default {
             colors: ['#000000','#1abc9c','#2ecc71','#3498db','#9b59b6','#34495e','#f1c40f','#e74c3c','#95a5a6','#d35400'],
             activeColor: 0,
             eraserUrl: require('@/assets/eraser.png'),
-            trashUrl: require('@/assets/trash.png')
+            trashUrl: require('@/assets/trash.png'),
+            points: []
         }
     },
     components: { WinAppWrap },
@@ -96,21 +97,40 @@ export default {
         mouseDown(e) {
             this.isDrawing = true
             this.context.beginPath()
-            this.context.moveTo(e.offsetX,e.offsetY)
+            // this.context.moveTo(e.offsetX,e.offsetY)
+            this.points.push({x:e.offsetX,y:e.offsetY})
         },
         mouseMove(e){
             if(this.isDrawing){
-                this.drawing(e.offsetX,e.offsetY)
+                this.newDrawing(e.offsetX,e.offsetY)
             }            
         },
         mouseUp(){
             this.isDrawing = false
+            this.points.length =0
         },
         drawing(x,y){
             this.context.lineTo(x,y)
             this.context.stroke()
             this.context.save()
-        }  
+        },
+        newDrawing(x,y){
+            this.points.push({x,y})
+            let newX = (this.points[this.points.length-2].x + this.points[this.points.length-1].x) / 2
+            let newY = (this.points[this.points.length-2].y + this.points[this.points.length-1].y) / 2
+            if(this.points.length == 2){
+                this.context.moveTo(this.points[this.points.length-2].x,this.points[this.points.length-2].y)
+                this.context.lineTo(newX,newY)
+            }else {
+                let lastX = (this.points[this.points.length-3].x + this.points[this.points.length-2].x) / 2
+                let lastY = (this.points[this.points.length-3].y + this.points[this.points.length-2].y) / 2
+                this.context.moveTo(lastX,lastY)
+                this.context.quadraticCurveTo(this.points[this.points.length - 2].x, this.points[this.points.length - 2].y, newX, newY);
+            }
+            this.context.stroke()
+            this.points.slice(0,1)
+            this.context.save()
+        }            
     }
 }
 </script>
