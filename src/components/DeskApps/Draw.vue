@@ -143,7 +143,7 @@ export default {
 
         canvas {
             background-color: #fff; 
-            cursor:url(https://5fou.com/i/2021/09/12/m2y5t7.ico),auto;
+            // cursor:url("pen1.ico"),auto;
 
             // 橡皮擦
             // cursor: url(https://5fou.com/i/2021/09/12/n9fmty.ico),auto;

@@ -5,6 +5,7 @@
     <component :is="item.name" v-for="item in openApps" :key="item.id" :data-id="item.id"></component>
     <!-- <Browser /> -->
     <!-- <Draw /> -->
+    <Music />
     <transition name="showBox">
       <component v-if="showBox === nowBox.name" :is="nowBox.name" :width="nowBox.width" :height="nowBox.height" :bottom="nowBox.bottom" :right="nowBox.right"></component>
     </transition>    
@@ -27,6 +28,7 @@ import Notebook from '@/components/DeskApps/Notebook'
 import Browser from '@/components/DeskApps/Browser'
 import Vscode from '@/components/DeskApps/Vscode'
 import Draw from '@/components/DeskApps/Draw'
+import Music from '@/components/DeskApps/Music'
 
 export default {
   name: 'Home',
@@ -42,7 +44,8 @@ export default {
     Notebook,
     Browser,
     Vscode,
-    Draw
+    Draw,
+    Music
   },
   data(){
     return {}
