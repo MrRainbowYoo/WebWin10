@@ -5,7 +5,7 @@
     <component :is="item.name" v-for="item in openApps" :key="item.id" :data-id="item.id"></component>
     <!-- <Browser /> -->
     <!-- <Draw /> -->
-    <Music />
+    <!-- <Music /> -->
     <transition name="showBox">
       <component v-if="showBox === nowBox.name" :is="nowBox.name" :width="nowBox.width" :height="nowBox.height" :bottom="nowBox.bottom" :right="nowBox.right"></component>
     </transition>    

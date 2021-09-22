@@ -3,7 +3,8 @@
         <div class="canvas-wrap">
             <canvas ref="canvas" 
                 width="1000" 
-                height="716" 
+                height="716"
+                :class="{'eraser-ico':isEraser,'pen-ico':!isEraser}" 
                 @mousedown="mouseDown($event)" 
                 @mousemove="mouseMove($event)" 
                 @mouseup="mouseUp()"
@@ -46,7 +47,8 @@ export default {
             activeColor: 0,
             eraserUrl: require('@/assets/eraser.png'),
             trashUrl: require('@/assets/trash.png'),
-            points: []
+            points: [],
+            isEraser: false
         }
     },
     components: { WinAppWrap },
@@ -71,7 +73,7 @@ export default {
             this.activeColor = index
             this.config.strokeStyle = this.colors[index]
             this.changeCanvasConfig()
-            this.$refs.canvas.style.cursor = 'url(https://5fou.com/i/2021/09/12/m2y5t7.ico),auto'
+            this.isEraser = false
         },
         changeCanvasConfig(){
             this.context.strokeStyle = this.config.strokeStyle
@@ -82,11 +84,13 @@ export default {
         eraser(){
             this.context.strokeStyle = '#fff'
             this.context.lineWidth = 50
-            this.$refs.canvas.style.cursor = 'url(https://5fou.com/i/2021/09/12/n9fmty.ico),auto'
+            this.isEraser = true
         },
         clearCanvas(){
             let canvas = this.$refs.canvas
             this.context.clearRect(0,0,canvas.width,canvas.height)
+            this.changeCanvasConfig()
+            this.isEraser = false
         },
         initCanvas() {
             const canvas = this.$refs.canvas
@@ -143,10 +147,15 @@ export default {
 
         canvas {
             background-color: #fff; 
-            // cursor:url("pen1.ico"),auto;
+            cursor:url("pen1.ico"),auto;
+        }
 
-            // 橡皮擦
-            // cursor: url(https://5fou.com/i/2021/09/12/n9fmty.ico),auto;
+        .pen-ico {
+            cursor: url("pen1.ico"),auto;
+        }
+
+        .eraser-ico {
+            cursor: url("eraser.ico"),auto;
         }
     }
 

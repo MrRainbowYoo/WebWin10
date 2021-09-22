@@ -8,7 +8,7 @@
     <AppIcon :imgUrl="apps[5].imgUrl" :name="apps[5].name"></AppIcon>
     <AppIcon :imgUrl="apps[6].imgUrl" :name="apps[6].name"></AppIcon>
     <AppIcon :imgUrl="apps[7].imgUrl" :name="apps[7].name"></AppIcon>
-    <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>      
+    <AppIcon :imgUrl="apps[8].imgUrl" :name="apps[8].name"></AppIcon>      
     <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>
     <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>      
   </div>
@@ -52,6 +52,10 @@ export default {
             {
                 imgUrl:require('@/assets/draw.png'),
                 name: '画图'
+            },
+            {
+                imgUrl:require('@/assets/音乐.png'),
+                name: '小陈音乐'
             }]
         }
     },

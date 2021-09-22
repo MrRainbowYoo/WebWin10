@@ -46,6 +46,13 @@ export default {
                         id
                     }
                     break;
+                case '小陈音乐':
+                    app = {
+                        name: 'Music',
+                        iconUrl:require('@/assets/音乐.png'),
+                        id
+                    }
+                    break;
                 default:
                     this.$message({
                         type:'info',
