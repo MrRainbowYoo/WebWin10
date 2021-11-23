@@ -53,6 +53,13 @@ export default {
                         id
                     }
                     break;
+                case '聊天室':
+                    app = {
+                        name: 'Chatroom',
+                        iconUrl:require('@/assets/chatroom.png'),
+                        id
+                    }
+                    break;
                 default:
                     this.$message({
                         type:'info',

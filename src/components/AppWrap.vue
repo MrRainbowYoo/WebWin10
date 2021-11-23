@@ -9,7 +9,7 @@
     <AppIcon :imgUrl="apps[6].imgUrl" :name="apps[6].name"></AppIcon>
     <AppIcon :imgUrl="apps[7].imgUrl" :name="apps[7].name"></AppIcon>
     <AppIcon :imgUrl="apps[8].imgUrl" :name="apps[8].name"></AppIcon>      
-    <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>
+    <AppIcon :imgUrl="apps[9].imgUrl" :name="apps[9].name"></AppIcon>
     <AppIcon :imgUrl="apps[0].imgUrl" :name="apps[0].name"></AppIcon>      
   </div>
 </template>
@@ -56,6 +56,10 @@ export default {
             {
                 imgUrl:require('@/assets/音乐.png'),
                 name: '小陈音乐'
+            },
+            {
+                imgUrl:require('@/assets/chatroom.png'),
+                name:'聊天室'
             }]
         }
     },

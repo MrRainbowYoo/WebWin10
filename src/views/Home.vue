@@ -29,6 +29,7 @@ import Browser from '@/components/DeskApps/Browser'
 import Vscode from '@/components/DeskApps/Vscode'
 import Draw from '@/components/DeskApps/Draw'
 import Music from '@/components/DeskApps/Music'
+import Chatroom from '@/components/DeskApps/Chatroom'
 
 export default {
   name: 'Home',
@@ -45,7 +46,8 @@ export default {
     Browser,
     Vscode,
     Draw,
-    Music
+    Music,
+    Chatroom
   },
   data(){
     return {}
