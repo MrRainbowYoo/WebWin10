@@ -99,8 +99,7 @@ export default {
                     border-left: @footerBorder;
                     border-right: @footerBorder;
                 }
-                &:nth-of-type(3){
-                }
+
                 &:nth-of-type(4){
                     width: 20%;
                     border-left: @footerBorder;
