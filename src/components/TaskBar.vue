@@ -25,7 +25,7 @@
   Internet访问" ref="WifiBox" id="WifiBox" @click.stop="changeNowBox($event)">
         <span class="iconfont icon-wuxianwifi"></span>
       </div>
-      <div class="win-item" title="扬声器：88%" ref="VolumeBox" id="VolumeBox" @click.stop="changeNowBox($event)">
+      <div class="win-item" title="扬声器：20%" ref="VolumeBox" id="VolumeBox" @click.stop="changeNowBox($event)">
         <span class="iconfont icon-volume"></span>
       </div>
       <div class="win-item" title="中文模式">
